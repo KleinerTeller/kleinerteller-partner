@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KleinerTeller – Partnernetzwerk</title>
+  <meta name="description" content="Kinderarztpraxen, Kitas und Ernährungsberater als Partner von KleinerTeller – gemeinsam für eine gesunde Ernährung von Babys und Kleinkindern." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #4A90D9;
+      --primary-dark: #2a6db5;
+      --primary-light: #EBF4FF;
+      --green: #34a853;
+      --green-light: #e8f5e9;
+      --text: #1a1a2e;
+      --text-secondary: #555;
+      --text-muted: #999;
+      --surface: #ffffff;
+      --bg: #f4f7fb;
+      --border: #e4e8ef;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── HERO ─────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #1976D2 0%, #42a5f5 100%);
+      color: white;
+      padding: 72px 24px 64px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero h1 span { color: #fff; opacity: 0.85; }
+    .hero-sub {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: white;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+
+    /* ── STATS BAR ────────────────────────── */
+    .stats-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+    }
+    .stats-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS ─────────────────────────── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    /* ── BENEFIT CARDS ────────────────────── */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+    .benefit-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+    }
+    .benefit-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+    .benefit-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+    .benefit-text {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── PARTNER LIST ─────────────────────── */
+    .region-block { margin-bottom: 40px; }
+    .region-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .region-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .partner-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .partner-type-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .partner-type-icon.arzt { background: #e3f2fd; }
+    .partner-type-icon.kita { background: var(--green-light); }
+    .partner-type-icon.ernaehrung { background: #fff3e0; }
+    .partner-name { font-weight: 700; font-size: 0.92rem; margin-bottom: 2px; }
+    .partner-location { font-size: 0.78rem; color: var(--text-muted); }
+    .partner-type-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 6px;
+      letter-spacing: 0.03em;
+    }
+    .badge-arzt { background: #e3f2fd; color: #1565c0; }
+    .badge-kita { background: var(--green-light); color: #1b5e20; }
+    .badge-ernaehrung { background: #fff3e0; color: #e65100; }
+
+    .no-partner {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+    .no-partner span { display: block; font-size: 1.6rem; margin-bottom: 8px; }
+
+    /* ── CTA BOX ──────────────────────────── */
+    .cta-box {
+      background: linear-gradient(135deg, #1976D2 0%, #42a5f5 100%);
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: center;
+      color: white;
+      margin-bottom: 56px;
+    }
+    .cta-box h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .cta-box p {
+      font-size: 0.92rem;
+      opacity: 0.9;
+      max-width: 420px;
+      margin: 0 auto 24px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); }
+
+    /* ── HOW IT WORKS ─────────────────────── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 2px; }
+    .step-text { font-size: 0.83rem; color: var(--text-secondary); }
+
+    /* ── FOOTER ───────────────────────────── */
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0 20px 32px;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Partnernetzwerk</div>
+    <h1>Kleiner<span>Teller</span><br>Partner werden</h1>
+    <p class="hero-sub">
+      Gemeinsam für eine gesunde Ernährung von Babys und Kleinkindern –
+      für Kinderarztpraxen, Kitas, Hebammen und Ernährungsberatungen.
+    </p>
+    <a href="#partner-werden" class="hero-cta">Jetzt Partner werden</a>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">aktive Familien</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">altersgerechte Rezepte</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">WHO</div>
+        <div class="stat-label">Wachstumskurven</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">DGE</div>
+        <div class="stat-label">Nährstoffempfehlungen</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0€</div>
+        <div class="stat-label">Kosten für Partner</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- WARUM PARTNER -->
+    <p class="section-label">Warum mitmachen?</p>
+    <h2 class="section-title">Mehrwert für beide Seiten</h2>
+    <p class="section-sub">
+      Eltern kommen besser vorbereitet – du gewinnst neue Familien und stärkst dein Angebot.
+    </p>
+    <div class="benefits">
+      <div class="benefit-card">
+        <div class="benefit-icon">📋</div>
+        <div class="benefit-title">Vorbereitete Eltern</div>
+        <p class="benefit-text">Wachstum, Nährstoffe und Mahlzeiten sind bereits dokumentiert – als PDF bereit für die Sprechstunde oder den Kita-Alltag.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📣</div>
+        <div class="benefit-title">Sichtbarkeit</div>
+        <p class="benefit-text">Deine Praxis, Kita oder Einrichtung wird hier und in der App als empfohlener Partner gelistet.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-title">Gegenseitige Empfehlung</div>
+        <p class="benefit-text">Du empfiehlst KleinerTeller deinen Familien – wir empfehlen dich unseren Nutzern in deiner Region.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💶</div>
+        <div class="benefit-title">Kostenlos</div>
+        <p class="benefit-text">Die Partnerschaft ist für Arztpraxen, Kitas und alle Einrichtungen vollständig kostenlos.</p>
+      </div>
+    </div>
+
+    <!-- SO FUNKTIONIERT ES -->
+    <p class="section-label">Ablauf</p>
+    <h2 class="section-title">So einfach geht's</h2>
+    <p class="section-sub">In drei Schritten zum Partner.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Kurze Anfrage per E-Mail</div>
+          <p class="step-text">Schreib uns an <a href="mailto:partner@kleinerteller.de" style="color:var(--primary)">partner@kleinerteller.de</a> mit deinem Praxis- oder Einrichtungsname und Ort.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Kurzes Kennenlernen</div>
+          <p class="step-text">Wir melden uns innerhalb von 48 Stunden für ein kurzes Gespräch oder beantworten deine Fragen direkt per Mail.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Listung & Empfehlung</div>
+          <p class="step-text">Deine Einrichtung erscheint auf dieser Seite nach Region sortiert – und du erhältst Informationsmaterial für deine Familien.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNER LISTE -->
+    <p class="section-label">Unsere Partner</p>
+    <h2 class="section-title">Partner in deiner Nähe</h2>
+    <p class="section-sub">Alle Praxen, Kitas und Beratungen, die KleinerTeller empfehlen.</p>
+
+    <!-- REGION: Bayern -->
+    <div class="region-block">
+      <div class="region-title">📍 Bayern</div>
+      <div class="partner-grid">
+        <!-- Hier Partner einfügen, Beispiel:
+        <div class="partner-card">
+          <div class="partner-type-icon arzt">🏥</div>
+          <div>
+            <div class="partner-name">Kinderarztpraxis Muster</div>
+            <div class="partner-location">Musterstraße 1 · 80331 München</div>
+            <span class="partner-type-badge badge-arzt">Kinderarztpraxis</span>
+          </div>
+        </div>
+        -->
+        <div class="no-partner">
+          <span>🌱</span>
+          Noch keine Partner in Bayern –<br>sei der Erste!
+        </div>
+      </div>
+    </div>
+
+    <!-- REGION: Baden-Württemberg -->
+    <div class="region-block">
+      <div class="region-title">📍 Baden-Württemberg</div>
+      <div class="partner-grid">
+        <div class="no-partner">
+          <span>🌱</span>
+          Noch keine Partner in Baden-Württemberg –<br>sei der Erste!
+        </div>
+      </div>
+    </div>
+
+    <!-- REGION: Nordrhein-Westfalen -->
+    <div class="region-block">
+      <div class="region-title">📍 Nordrhein-Westfalen</div>
+      <div class="partner-grid">
+        <div class="no-partner">
+          <span>🌱</span>
+          Noch keine Partner in NRW –<br>sei der Erste!
+        </div>
+      </div>
+    </div>
+
+    <!-- REGION: Weitere -->
+    <div class="region-block">
+      <div class="region-title">📍 Weitere Bundesländer</div>
+      <div class="partner-grid">
+        <div class="no-partner">
+          <span>🌱</span>
+          Noch keine Partner –<br>sei der Erste!
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box" id="partner-werden">
+      <h2>Jetzt Partner werden</h2>
+      <p>
+        Kostenlos und unverbindlich – für Kinderarztpraxen, Kitas,
+        Hebammen, Ernährungsberatungen und weitere Einrichtungen rund ums Kind.
+      </p>
+      <a href="mailto:partner@kleinerteller.de" class="cta-btn">
+        ✉️ partner@kleinerteller.de
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://legal.kleinerteller.de">Impressum & Datenschutz</a>
+      <a href="https://legal.kleinerteller.de/support.html">Support</a>
+      <a href="mailto:partner@kleinerteller.de">Kontakt</a>
+    </div>
+    &copy; 2026 Baki Deniz · KleinerTeller
+  </footer>
+
+</body>
+</html>
